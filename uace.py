@@ -13,7 +13,13 @@ num_points = points_source[first_subject]
 num_points2 = points_source[second_subject]
 num_points3 = points_source[third_subject]
 #Subsidiary Check
-print("Did you score a GP ")
-#Add up the points then display them
-total_points = num_points+num_points2+num_points3
-print("Your total points scored are" + str(total_points))
+print("Did you score the subsidiary passes Y/N?")
+sub_test = input()
+pass_onot = ["Y", "N"]
+if sub_test == pass_onot[0]:   
+    #Add up the points then display them
+    total_points = num_points+num_points2+num_points3+2
+    print("Your total points scored are" + str(total_points))
+else:
+    total_points = num_points+num_points2+num_points3
+    print("Your total points scored are" + str(total_points))
