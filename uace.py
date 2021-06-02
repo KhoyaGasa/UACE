@@ -1,25 +1,29 @@
-#A program that calculates the UACE points scored by someone
-#Create a dictionary containing the scores and their respective points.
-points_source = {'A': 6, 'B': 5, 'C': 4, 'D': 3, 'E': 2, 'O': 1, 'F': 0} 
+#A program that calculates the UACE points scored by someone 
 #Print and read user input
-print("Please enter the scores in first principle subject")
-first_subject = input()
-print ("Please enter the score for the second principle subject")
-second_subject = input()
-print ("Please enter the score for the third principle subject")
-third_subject = input()
-#Search for the corresponding points in the dictionary
-num_points = points_source[first_subject]
-num_points2 = points_source[second_subject]
-num_points3 = points_source[third_subject]
-#Subsidiary Check
-print("Did you score the subsidiary passes Y/N?")
-sub_test = input()
-pass_onot = ["Y", "N"]
-if sub_test == pass_onot[0]:   
-    #Add up the points then display them
-    total_points = num_points+num_points2+num_points3+2
-    print("Your total points scored are" + str(total_points))
-else:
-    total_points = num_points+num_points2+num_points3
-    print("Your total points scored are" + str(total_points))
+print("Please enter your scores in the format 1AAA1")
+UserInput = input()
+IndividualScores = list(UserInput)
+def computeUACEpoints (IndividualScores):
+    #Create subsidiaryScore1 dictionary containing the scores and their respective points.
+    gradingScale = {'a': 6, 'b': 5, 'c': 4, 'd': 3, 'e': 2, 'o': 1, 'f': 0}
+    #Search for the corresponding points in the dictionary
+    principalScore1 = gradingScale[IndividualScores[1]]
+    principalScore2 = gradingScale[IndividualScores[2]]
+    principalScore3 = gradingScale[IndividualScores[3]]
+    subsidiaryScore1 = int(IndividualScores[0])
+    subsidiaryScore2 = int(IndividualScores[4])
+    limit =int(8)
+    if subsidiaryScore1<=limit and subsidiaryScore1>0 and subsidiaryScore2<=limit and subsidiaryScore2>0 :   
+        #Add up the points then display them
+        total_points = principalScore1+principalScore2+principalScore3+2
+        print("Your total points scored are" + str(total_points))
+    elif subsidiaryScore1>0 and subsidiaryScore1>limit and subsidiaryScore2<=limit and subsidiaryScore2>0 :
+        total_points = principalScore1+principalScore2+principalScore3+1
+        print("Your total points scored are" + str(total_points))
+    elif subsidiaryScore1<=limit and subsidiaryScore1>0 and subsidiaryScore2>0 and subsidiaryScore2>limit:
+        total_points = principalScore1+principalScore2+principalScore3+1
+        print("Your total points scored are" + str(total_points))
+    else:
+        total_points = principalScore1+principalScore2+principalScore3
+        print("Your total points scored are" + str(total_points))
+computeUACEpoints(IndividualScores)
